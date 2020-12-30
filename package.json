@@ -1,0 +1,38 @@
+{
+  "name": "asynchronous-cache",
+  "version": "0.0.1",
+  "description": "Simple asynchronous in-memory cache",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc --project ./",
+    "lint": "eslint --ext .ts ./",
+    "preversion": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josefjadrny/asynchronous-cache.git"
+  },
+  "keywords": [
+    "async",
+    "asynchronous",
+    "cache",
+    "in-memory"
+  ],
+  "author": "bc.josefjadrny@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/josefjadrny/asynchronous-cache/issues"
+  },
+  "homepage": "https://github.com/josefjadrny/asynchronous-cache#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
+    "eslint": "^7.16.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

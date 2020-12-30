@@ -1,0 +1,15 @@
+{
+    "env": {
+        "es6": true
+    },
+    "extends": [
+        "standard",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"],
+    "rules": {
+        "indent": ["error", 4],
+        "comma-dangle": ["error", "always-multiline"]
+    }
+}
