@@ -4,7 +4,7 @@
   "description": "Simple asynchronous in-memory cache",
   "main": "dist/Cache.js",
   "scripts": {
-    "build": "rm -rf dist && tsc --outDir dist src/*.ts",
+    "build": "rm -rf dist && tsc",
     "lint": "eslint --ext .ts ./",
     "preversion": "npm run lint && npm run build",
     "test": "jest"
