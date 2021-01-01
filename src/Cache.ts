@@ -1,6 +1,6 @@
 type FunctionToExecute = (...args: any[]) => any
 
-export class Cache {
+export default class Cache {
     cache: Map<string, any>
     tempCache: Map<string, FunctionToExecute>
 
