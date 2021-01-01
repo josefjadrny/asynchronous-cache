@@ -16,8 +16,7 @@ When you are calling asynchronous function repeatedly, result from first call is
 ## Usage
 
 ```js
-import Cache from 'asynchronous-cache'
-// or CommonJS (nodeJs) -> const Cache = require('asynchronous-cache').default
+import Cache from 'asynchronous-cache' // or CommonJS (nodeJs) -> const Cache = require('asynchronous-cache').default
 const cache = new Cache()
 
 let executedCounter = 0
