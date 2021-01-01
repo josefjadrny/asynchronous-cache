@@ -13,6 +13,22 @@ When you are calling asynchronous function repeatedly, result from first call is
 
 ```yarn add asynchronous-cache```
 
+## Usage
+
+```js
+const Cache = require('asynchronous-cache')
+const cache = new Cache()
+
+let executedCounter = 0
+const functionToExecute = async () => { return ++executedCounter }
+await Promise.all([
+    cache.executeWithCache('someKey', functionToExecute),
+    cache.executeWithCache('someKey', functionToExecute),
+])
+
+// executedCounter=1 - function is executed only once
+```
+
 ## Import
 
 This library is compiled as UMD (Universal Module Definition) and could be used as module or as a global.
@@ -39,16 +55,6 @@ const cache = new Cache()
 - `key` string - Key is used as an identifier for same functions. Caching is based on this key, so same function should have same key.
 - `functionToExecute` asynchronous function reference - Any asynchronous function reference (without the parentheses). This function will be executed and result will be cached for another calls.
 
-## Full Example
-
-```js
-const Cache = require('asynchronous-cache')
-const cache = new Cache()
-
-const functionToExecute = async () => { return 'done' }
-await cache.executeWithCache('someKey', functionToExecute)
-```
-
 ## How it works
 
 There is an example from [test](./tests/Cache.test.ts)
@@ -71,7 +77,7 @@ test('async function should be executed only once in async calls', async () => {
     const result = await promiseAll
     // asyncMock is called only once
     expect(asyncMock.mock.calls.length).toBe(1)
-    // result from first call is cached and returned for next calls
+    // result from first call is cached and reused for next calls
     expect(result).toEqual([resultOfAsyncMock, resultOfAsyncMock, resultOfAsyncMock])
 })
 ```
