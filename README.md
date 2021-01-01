@@ -16,35 +16,18 @@ When you are calling asynchronous function repeatedly, result from first call is
 ## Usage
 
 ```js
-const Cache = require('asynchronous-cache')
+import Cache from 'asynchronous-cache' // Use of require is also possible
 const cache = new Cache()
 
 let executedCounter = 0
 const functionToExecute = async () => { return ++executedCounter }
-await Promise.all([
+
+Promise.all([
     cache.executeWithCache('someKey', functionToExecute),
     cache.executeWithCache('someKey', functionToExecute),
-])
-
-// executedCounter=1 - function is executed only once
-```
-
-## Import
-
-This library is compiled as UMD (Universal Module Definition) and could be used as module or as a global.
-
-With require (nodeJs)
-
-```js
-const Cache = require('asynchronous-cache')
-const cache = new Cache()
-```
-
-With import (ES6, React,...)
-
-```js
-import { Cache } from 'asynchronous-cache'
-const cache = new Cache()
+]).then(result => {
+    console.log(result) // [ 1, 1 ] -> function is executed only once
+})
 ```
 
 ## API
@@ -59,7 +42,7 @@ const cache = new Cache()
 
 There is an example from [test](./tests/Cache.test.ts)
 ```js
-const Cache = require('asynchronous-cache')
+import Cache from 'asynchronous-cache'
 const cache = new Cache()
 
 const resultOfAsyncMock = 'ok'
