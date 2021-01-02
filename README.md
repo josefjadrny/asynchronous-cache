@@ -20,7 +20,7 @@ This library does not have any dependencies.
 ## Usage
 
 ```js
-import Cache from 'asynchronous-cache' // or CommonJS (nodeJs) -> const Cache = require('asynchronous-cache').default
+import { Cache } from 'asynchronous-cache' // or CommonJS (nodeJs) -> const Cache = require('asynchronous-cache').Cache
 const cache = new Cache()
 
 let executedCounter = 0

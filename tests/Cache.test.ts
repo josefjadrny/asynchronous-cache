@@ -1,4 +1,4 @@
-import Cache from '../src/Cache'
+import { Cache } from '../src/Cache'
 let cache = new Cache()
 
 const resultOfAsyncMock = 'ok'
