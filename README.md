@@ -46,7 +46,7 @@ Promise.all([
 
 There is an example from [test](./tests/Cache.test.ts)
 ```js
-import Cache from 'asynchronous-cache'
+import { Cache } from 'asynchronous-cache'
 const cache = new Cache()
 
 const resultOfAsyncMock = 'ok'
