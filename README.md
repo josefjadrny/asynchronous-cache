@@ -1,7 +1,11 @@
 # Asynchronous in-memory cache
+![GitHub package.json version](https://img.shields.io/github/package-json/v/josefjadrny/asynchronous-cache)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This library helps you with executing asynchronous functions only once.
 When you are calling asynchronous function repeatedly, result from first call is returned.
+
+This library does not have any dependencies.
 
 ## Install
 
