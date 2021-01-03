@@ -46,3 +46,39 @@ test('should throw an error when key is not a string', async () => {
     // @ts-ignore
     await expect(cache.executeWithCache({}, asyncMock)).rejects.toThrow('Key should be a string, got object')
 })
+
+test('should return false for delete non-exist key', async () => {
+    expect(cache.delete(key)).toBe(false)
+})
+
+test('should delete record from cache and return true', async () => {
+    await cache.executeWithCache(key, asyncMock)
+    expect(cache.delete(key)).toBe(true)
+    expect(cache.cache).toEqual(new Map())
+    expect(cache.tempCache).toEqual(new Map())
+})
+
+test('should delete executing record from cache and return true', async () => {
+    // Do not wait for async function (function is in temp cache)
+    cache.executeWithCache(key, asyncMock)
+    expect(cache.delete(key)).toBe(true)
+    expect(cache.cache).toEqual(new Map())
+    expect(cache.tempCache).toEqual(new Map())
+})
+
+test('should clear cache', async () => {
+    await cache.executeWithCache(key, asyncMock)
+    await cache.executeWithCache('anotherKey', asyncMock)
+    cache.clear()
+    expect(cache.cache).toEqual(new Map())
+    expect(cache.tempCache).toEqual(new Map())
+})
+
+test('should delete record with TTL', async () => {
+    // This function will be resolved after 50ms
+    await cache.executeWithCache(key, asyncMock, { TTL: 60 })
+    expect(cache.cache).toEqual(new Map([[key, resultOfAsyncMock]]))
+    // 50 + 20 = 70ms, TTL was set to 60ms
+    await new Promise((resolve) => setTimeout(resolve, 20))
+    expect(cache.cache).toEqual(new Map())
+})

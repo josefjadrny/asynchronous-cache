@@ -36,11 +36,24 @@ Promise.all([
 
 ## API
 
-`cache.executeWithCache(key, functionToExecute)` - Returns a result for passed key from in-memory cache. If there is no record for this key, then function is executed and result is stored for next calls.
+### `cache.executeWithCache(key, functionToExecute, options = {})`
+Returns a result for passed `key` from in-memory cache. If there is no record for this key, then `functionToExecute` is executed and result is returned and stored for next calls.
 
 **Params**
 - `key` string - Key is used as an identifier for same functions. Caching is based on this key, so same function should have same key.
 - `functionToExecute` asynchronous function reference - Any asynchronous function reference (without the parentheses). This function will be executed and result will be cached for another calls.
+- `options` (_optional_) object - Default is an empty object.
+Possible options:
+  - `TTL` - Record will be removed from cache after TTL milliseconds.
+
+### `cache.delete(key)`
+Delete key from the cache. Returns true if key was found and removed, otherwise false is returned.
+
+**Params**
+- `key` string - Key you want to remove from cache
+
+### `cache.clear()`
+Clears whole cache. All keys and records are deleted from memory.
 
 ## How it works
 
